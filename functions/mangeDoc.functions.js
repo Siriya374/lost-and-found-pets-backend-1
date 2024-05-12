@@ -34,7 +34,7 @@ export async function updateDocs(collectionName, filter, payload) {
     return new Promise(async (resolve, reject) => {
       await getDocs(query(collectionRef, where(field, operator, value)))
         .then(async function (querySnapshot) {
-          if(querySnapshot.empty == false){
+          if (querySnapshot.empty == false) {
             await querySnapshot.forEach(async function (doc) {
               var docRef = doc.ref;
               await updateDoc(docRef, payload)
@@ -56,7 +56,7 @@ export async function updateDocs(collectionName, filter, payload) {
                 });
             });
           } else {
-            resolve({status: "fail"})
+            resolve({ status: "fail" });
           }
         })
         .catch(function (error) {
