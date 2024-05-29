@@ -23,19 +23,6 @@ export async function add_post(req, res) {
       });
     }
 
-    var type = await getDocumentsByField("types", {
-      field: "type_name",
-      operator: "==",
-      value: data.type_name,
-    });
-
-    if (type.status == "fail") {
-      return res.status(400).json({
-        staus: "fail",
-        message: "user not found",
-      });
-    }
-
     var payload = {
       id: uuidv4(),
       name: data.name,
@@ -51,7 +38,7 @@ export async function add_post(req, res) {
       updated_at: new Date(),
       lat: data.lat,
       lng: data.lng,
-      type_name: type.data.type_name,
+      type_name: data.type_name,
       reason: data.reason,
     };
 
